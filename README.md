@@ -100,7 +100,7 @@ $ node app.js
 
 - Request example (curl):
     ```
-    $ curl -i -X POST -H "Content-Type: application/json" -d "{\"userId\":3, \"postId\":1}" http://localhost:8889/user/like
+    $ curl -i -X POST -H "Content-Type: application/json" -d '{"userId":3, "postId":1}' http://localhost:8889/user/like
     ```
 - Response Parameters: (Json format) 
     >     success/error: boolean  
@@ -130,7 +130,7 @@ $ node app.js
 
 - Request example (curl):
     ```
-    $ curl -i -X GET -H "Content-Type: application/json" -d "{\"userId\":3}" http://localhost:8889/user/post
+    $ curl -i -X GET -H "Content-Type: application/json" -d '{"userId":3}' http://localhost:8889/user/post
     ```
 - Response Parameters: (Json format) 
     >     success/error: boolean  
@@ -150,11 +150,43 @@ $ node app.js
     >    "success": true,  
     >    "message": "Success.",  
     >    "posts": [  
-    >        {"postId":2,"title":"Test Post Shen","content":"test"},  
-    >        {"postId":4,>"title":"Test Post ade","content":"test"}  
+    >        {"postId":2,"title":"Test Post 1","content":"test"},  
+    >        {"postId":4,"title":"Test Post 2","content":"test"}  
     >    ] 
     > }
 
+### 5. Get users who like a specific post
+- Url:
+    >    http://[target-IP]:[port]/post/like
+- Method: GET
+- Header: "Content-Type: application/json"
+- Request Parameters: (Json format) 
+    >    postId: {$postId} //number  
+
+- Request example (curl):
+    ```
+    $ curl -i -X GET -H "Content-Type: application/json" -d '{"postId":1}' http://localhost:8889/post/like
+    ```
+- Response Parameters: (Json format) 
+    >     success/error: boolean  
+    >     message: "message"  
+    >     likes: [{
+    >        name: {$name}
+    >     }]
+
+    - (200 Success)  
+    - (400 Bad Request)
+        - Illegal character
+    - (500 Internal Server Error)
+- Response example:
+    > {  
+    >    "success": true,  
+    >    "message": "Success.",  
+    >    "likes": [  
+    >       {"name":"Test1"},  
+    >       {"name":"Test2"}  
+    >    ]  
+    > }
 
 ## Contact
 ##### Author: Linda.MJ.Hsu

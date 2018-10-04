@@ -44,17 +44,48 @@ $ node app.js
 - Response:
     > success/error: boolean  
     > message: "message"  
-    > id: {$user_id}  
+    > id: {$userId}  
 
     - (200 Success)  
         - Success create user  
         - Duplicate user
-    - (400 Illegal character)
+    - (400 Bad Request)
     - (500 Internal Server Error)
 - Response example:
     > {  
-    >    "success":true,  
+    >    "success": true,  
     >    "message":"Success create user: Test",  
+    >    "id":1  
+    > }
+
+### 2. Post article
+- Url:
+    > http://[target-IP]:[port]/user/post
+- Method: POST
+- Header: "Content-Type: application/json"
+- Request Parameters: (Json format) 
+    >    userId: {$userId} //number  
+    >    title: ${title}  //alphanumeric  
+    >    content: {$content}  //text  
+
+- Request example (curl):
+    ```
+    $ curl -i -X POST -H "Content-Type: application/json" -d '{"userId":3, "title":"Test Post", "content":"test content"}" http://localhost:8889/user/post
+    ```
+- Response:
+    > success/error: boolean  
+    > message: "message"  
+    > id: {$postId}  
+
+    - (200 Success)  
+    - (400 Bad Request)
+        - Illegal character
+        - Invalid user
+    - (500 Internal Server Error)
+- Response example:
+    > {  
+    >    "success": true,  
+    >    "message":"Success post: Test Post",  
     >    "id":1  
     > }
 

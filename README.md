@@ -120,6 +120,41 @@ $ node app.js
     >    "id": 3  
     > }
 
+### 4. Get all posts of a specific user
+- Url:
+    >    http://[target-IP]:[port]/user/post
+- Method: GET
+- Header: "Content-Type: application/json"
+- Request Parameters: (Json format) 
+    >    userId: {$userId} //number  
+
+- Request example (curl):
+    ```
+    $ curl -i -X GET -H "Content-Type: application/json" -d "{\"userId\":3}" http://localhost:8889/user/post
+    ```
+- Response Parameters: (Json format) 
+    >     success/error: boolean  
+    >     message: "message"  
+    >     posts: [{
+    >        postId: {$postId},
+    >        title: {$title},
+    >        content: {$content}
+    >     }]
+
+    - (200 Success)  
+    - (400 Bad Request)
+        - Illegal character
+    - (500 Internal Server Error)
+- Response example:
+    > {  
+    >    "success": true,  
+    >    "message": "Success.",  
+    >    "posts": [  
+    >        {"postId":2,"title":"Test Post Shen","content":"test"},  
+    >        {"postId":4,>"title":"Test Post ade","content":"test"}  
+    >    ] 
+    > }
+
 
 ## Contact
 ##### Author: Linda.MJ.Hsu

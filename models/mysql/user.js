@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./db').sequelize;
 const User = require('./db').User;
+const Like = require('./db').Like;
 
 exports.addUser = function (userName, callback) {
   sequelize.transaction(function (t) {

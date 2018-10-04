@@ -58,13 +58,18 @@ let Like = sequelize.define('Like', {
   });
 
 try {
+  //Set association
+  User.hasMany(Like);
+  Like.belongsTo(User, { foreignKey: "user_id" });
+  Post.hasMany(Like);
+  Like.belongsTo(Post, { foreignKey: "post_id" });
+
   User.sync({ force: false });
   Post.sync({ force: false });
   Like.sync({ force: false });
 } catch (err) {
   console.error(err);
 }
-
 
 exports.sequelize = sequelize;
 exports.User = User;

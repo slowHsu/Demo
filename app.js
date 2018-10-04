@@ -8,9 +8,14 @@ app.set('port', process.env.PORT || 8889);
 app.use(express.urlencoded());
 app.use(express.json());
 
-app.use(function (req, res, next) {
-    next();
+app.use(function (err, req, res, next) {
+  if (err) {
+    res.status(400).send('Invalid Request data');
+  } else {
+    next()
+  }
 });
+
 app.use(function (err, req, res, next) {
   console.log(err.stack);
   res.status(500).send({ error: 'Internal Server Error' });

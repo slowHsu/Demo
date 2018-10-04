@@ -44,7 +44,7 @@ let Like = sequelize.define('Like', {
       key: 'id'
     }
   },
-  author_id: {  type: Sequelize.INTEGER, allowNull: false, unique: 'compositeIndex',
+  user_id: {  type: Sequelize.INTEGER, allowNull: false, unique: 'compositeIndex',
     references: {     // foreign key
       model: User,
       key: 'id'

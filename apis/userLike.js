@@ -21,7 +21,7 @@ function userLike(req, res) {
           return res.status(400).json({ error: true, message: msg });
         } else if (err === 'Duplicate') {
           console.info(`[userLike] Duplicate Like.`)
-          return res.status(400).json({ success: true, message: 'Duplicate like.', id:id });
+          return res.status(400).json({ success: true, message: 'Duplicate like.', id: id });
         }
         console.error(err);
         return res.status(500).json({ error: true, message: 'Internal Server Error' });

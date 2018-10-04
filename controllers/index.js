@@ -6,5 +6,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/user', require('../apis/createUser'));
+router.post('/user/post', require('../apis/userPost'));
 
 module.exports = router;
